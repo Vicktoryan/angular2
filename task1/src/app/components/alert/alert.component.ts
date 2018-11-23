@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
-import {IAlert} from "../../interfaces/IAlert";
-import {AlertService} from "../../services/alert.service";
+import { Component, OnInit } from '@angular/core';
+import { Subscription } from "rxjs";
+import { IAlert } from "../../interfaces/IAlert";
+import { AlertService } from "../../services/alert.service";
 
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.scss']
+  styleUrls: [ './alert.component.scss' ]
 })
 export class AlertComponent implements OnInit {
   public alerts: {

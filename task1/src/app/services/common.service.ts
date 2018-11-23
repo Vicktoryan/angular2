@@ -1,11 +1,12 @@
-import {Injectable} from '@angular/core';
-import {IUserInformation} from "../interfaces/IUserInformation";
+import { Injectable } from '@angular/core';
+import { IUserInformation } from "../interfaces/IUserInformation";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
   private userInformation: IUserInformation;
+
   constructor() {
 
   }

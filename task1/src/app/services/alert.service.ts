@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {Subject, Observable} from "rxjs";
-import {IAlert} from "../interfaces/IAlert";
+import { Injectable } from '@angular/core';
+import { Subject, Observable } from "rxjs";
+import { IAlert } from "../interfaces/IAlert";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,6 @@ export class AlertService {
   private alertList: IAlert[] = [];
 
   constructor() {
-
   }
 
   setAlert(alert: IAlert, timeLife: number = null): void {

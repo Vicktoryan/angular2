@@ -1,13 +1,13 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {ReactiveFormsModule} from "@angular/forms";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from "@angular/forms";
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {LoginComponent} from './pages/login/login.component';
-import {AlertComponent} from './components/alert/alert.component';
-import {VideoListComponent} from './pages/lists/video-list/video-list.component';
-import {VideoComponent} from "./pages/details/video/video.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { VideoListComponent } from './pages/lists/video-list/video-list.component';
+import { VideoComponent } from "./pages/details/video/video.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import {VideoComponent} from "./pages/details/video/video.component";
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule {
 }
