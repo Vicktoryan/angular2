@@ -1,4 +1,4 @@
 export interface IUserInformation {
-  sessionId: string,
+  userId: string,
   userName: string
 }

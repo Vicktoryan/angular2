@@ -12,20 +12,19 @@ export class AlertService {
   constructor() {
   }
 
-  setAlert(alert: IAlert, timeLife: number = null): void {
+  public setAlert(alert: IAlert, timeLife: number = null): void {
     if (!this.alertList.some((item: IAlert) => item.message === alert.message)) {
       this.alertList.push(alert);
       if (alert.type !== 'error' || timeLife) {
         setTimeout(() => {
-          this.alertList.splice(this.alertList.indexOf(alert), 1);
-          this.subject.next(this.alertList);
+          this.removeAlert(alert);
         }, timeLife || 5000);
       }
       this.subject.next(this.alertList);
     }
   }
 
-  clearAlert(): void {
+  public clearAlert(): void {
     this.alertList = [];
     this.subject.next();
   }

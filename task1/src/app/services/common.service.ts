@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IUserInformation } from "../interfaces/IUserInformation";
+import { Router } from '@angular/router';
+import { PageRouterService } from './page-router.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +9,16 @@ import { IUserInformation } from "../interfaces/IUserInformation";
 export class CommonService {
   private userInformation: IUserInformation;
 
-  constructor() {
+  constructor(
+    private pageRouterService: PageRouterService,
+    private router: Router
+  ) {
 
+  }
+
+  static getUserInformation(): IUserInformation {
+    const userInfo: string = localStorage.getItem('currentUser') || '{}';
+    return JSON.parse(userInfo);
   }
 
   public login(login: string, password: string) {
@@ -23,14 +33,18 @@ export class CommonService {
     return promise;
   }
 
-  public getUserInformation(): IUserInformation {
-    return this.userInformation;
+  public logout(): void {
+    localStorage.removeItem('currentUser');
+    this.pageRouterService.pageLogin();
+    this.router.navigate([ '/login' ]);
   }
 
   private setUserInformation(): void {
     this.userInformation = {
-      sessionId: '1',
+      userId: '1',
       userName: 'Test name'
     };
+
+    localStorage.setItem('currentUser', JSON.stringify(this.userInformation));
   }
 }

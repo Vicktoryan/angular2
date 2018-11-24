@@ -6,6 +6,24 @@
   position: absolute;
   top: 0;
 }
+.loginLogoSun {
+  width: 110px;
+  height: 110px;
+  margin: auto;
+  background: #ff0;
+  border: 1px solid #f00;
+  border-radius: 60px;
+  position: relative;
+  top: -36px;
+  margin-top: -180px;
+}
+
+.loginLogo {
+  position: absolute;
+  left: calc(50% - 79px);
+  margin-top: -145px;
+  transform: scale(.6);
+}
 
 .loginForm {
   display: table-cell;

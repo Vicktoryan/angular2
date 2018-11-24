@@ -8,6 +8,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { VideoListComponent } from './pages/lists/video-list/video-list.component';
 import { VideoComponent } from "./pages/details/video/video.component";
+import { AuthGuard } from '../classes/AuthGard';
+import { HeaderComponent } from './components/header/header.component';
+import { LogoComponent } from './components/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +19,18 @@ import { VideoComponent } from "./pages/details/video/video.component";
     VideoComponent,
     AlertComponent,
     VideoComponent,
-    VideoListComponent
+    VideoListComponent,
+    HeaderComponent,
+    LogoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {
