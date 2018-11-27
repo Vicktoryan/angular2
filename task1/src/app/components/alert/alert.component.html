@@ -1,9 +1,0 @@
-<div
-  *ngFor="let alert of alerts; let i = index"
-  class="alertBlock smallFont"
-  [class.alertError]="alert.type === 'error'"
-  [style.top]="i*32 + 'px'"
->
-  <span style="padding: 10px">{{alert.message}}</span>
-  <i class="fa fa-times" aria-hidden="true" (click)="close(alert)"></i>
-</div>
