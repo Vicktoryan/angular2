@@ -1,0 +1,55 @@
+.loginBlock {
+  height: 100%;
+  margin: auto;
+  display: table;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  background: #ff990038;
+}
+.loginLogoSun {
+  width: 110px;
+  height: 110px;
+  margin: auto;
+  background: #ff0;
+  border: 1px solid #f00;
+  border-radius: 60px;
+  position: relative;
+  top: -36px;
+  margin-top: -180px;
+}
+
+.loginLogo {
+  position: absolute;
+  left: calc(50% - 79px);
+  margin-top: -145px;
+  transform: scale(.6);
+}
+
+.loginForm {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+
+  .formItems {
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background: #fff;
+    margin: auto;
+    display: grid;
+    width: 200px;
+    border: 1px solid;
+    text-align: left;
+    height: 200px;
+    padding: 15px;
+    button {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

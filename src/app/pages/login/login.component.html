@@ -1,0 +1,23 @@
+<div class="loginBlock">
+  <div class="loginForm" action="">
+    <div class="loginLogoSun"></div>
+    <div class="loginLogo">
+      <app-logo></app-logo>
+    </div>
+    <div class="formItems">
+      <div>
+        <label>Login</label>
+        <input [formControl]="login" type="text">
+      </div>
+
+      <div>
+        <label>Password</label>
+        <input [formControl]="password" type="password">
+      </div>
+
+      <div>
+        <button class="green" (click)="singIn()">Sign in</button>
+      </div>
+    </div>
+  </div>
+</div>
