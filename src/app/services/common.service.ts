@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IUserInformation } from "../interfaces/IUserInformation";
 import { Router } from '@angular/router';
-import { PageRouterService } from './page-router.service';
+import { HeaderService } from './header.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class CommonService {
   private userInformation: IUserInformation;
 
   constructor(
-    private pageRouterService: PageRouterService,
+    private headerService: HeaderService,
     private router: Router
   ) {
 
@@ -34,15 +34,21 @@ export class CommonService {
   }
 
   public logout(): void {
+    this.clearUserInfo();
+    this.router.navigate([ '' ]);
+  }
+
+  public clearUserInfo(): void {
     localStorage.removeItem('currentUser');
-    this.pageRouterService.pageLogin();
-    this.router.navigate([ '/login' ]);
+    this.headerService.notifyHeader(true);
   }
 
   private setUserInformation(): void {
     this.userInformation = {
       userId: '1',
-      userName: 'Test name'
+      firstName: 'Test',
+      lastName: 'Name',
+      userFullName: 'Test Name'
     };
 
     localStorage.setItem('currentUser', JSON.stringify(this.userInformation));

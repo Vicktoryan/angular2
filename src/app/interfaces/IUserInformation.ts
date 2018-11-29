@@ -1,4 +1,6 @@
 export interface IUserInformation {
   userId: string,
-  userName: string
+  firstName: string,
+  lastName: string,
+  userFullName: string
 }

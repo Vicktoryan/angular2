@@ -24,14 +24,41 @@
   border: 1px solid #f00;
 }
 
-.headerMenu {
+.headerControls {
+  display: flex;
+  flex-direction: row;
   position: absolute;
   right: 0;
+  padding-right: 10px;
+}
+
+.headerLogout, .headerLogin {
   padding: 17px;
   i {
     font-size: 24px;
     color: #fff;
     cursor: pointer;
+  }
+}
+
+.headerAvatar {
+  font-size: 24px;
+  padding: 8px;
+  display: flex;
+  i {
+    color: #000;
+    margin: 7px 7px 7px 10px;
+  }
+  .userName {
+    padding: 8px 10px;
+    color: #fff;
+  }
+  .avatar {
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
   }
 }
 

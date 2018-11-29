@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PageRouterService } from '../page-router.service';
+import { HeaderService } from '../header.service';
 
-describe('PageRouterService', () => {
+describe('HeaderService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PageRouterService = TestBed.get(PageRouterService);
+    const service: HeaderService = TestBed.get(HeaderService);
     expect(service).toBeTruthy();
   });
 });

@@ -1,23 +1,17 @@
 {
-    "extends": ["tslint-microsoft-contrib", "tslint-sonarts"],
+    "extends": "../tslint.json",
     "rules": {
-        "indent": ["tabs"],
-        "no-relative-imports": false,
-        "no-import-side-effect": false,
-        "export-name": false,
-        "import-name": false,
-        "no-parameter-properties": false,
-        "ordered-imports": false,
-        "no-require-imports": false,
-        "no-var-requires": false,
-        "function-name": false,
-        "no-trailing-whitespace": false,
-        "align": ["parameters"],
-        "no-suspicious-comment": false,
-        "linebreak-style": false,
-        "no-multiline-string":false,
-        "curly": [true, "ignore-same-line"],
-        "no-string-literal": false
-        //"no-any": false
+        "directive-selector": [
+            true,
+            "attribute",
+            "app",
+            "camelCase"
+        ],
+        "component-selector": [
+            true,
+            "element",
+            "app",
+            "kebab-case"
+        ]
     }
 }

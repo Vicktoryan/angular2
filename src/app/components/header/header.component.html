@@ -1,12 +1,24 @@
-<div class="header">
+<div *ngIf="isShowHeader === true" class="header">
   <div class="headerLogoCircle"></div>
   <div class="headerLogo">
     <app-logo></app-logo>
   </div>
 
   <div class="headerName">TASK 1</div>
-
-  <div class="headerMenu">
-    <i class="fas fa-power-off" (click)="exit()"></i>
+  <div class="headerControls">
+    <div class="headerAvatar" *ngIf="cService.getUserInformation().userId !== undefined">
+      <div class="userName">
+        {{cService.getUserInformation().userFullName}}
+      </div>
+      <div class="avatar">
+        <i class="fas fa-user-secret"></i>
+      </div>
+    </div>
+    <div class="headerLogin" *ngIf="cService.getUserInformation().userId === undefined">
+      <i class="fas fa-sign-in-alt" (click)="login()"></i>
+    </div>
+    <div class="headerLogout" *ngIf="cService.getUserInformation().userId !== undefined">
+      <i class="fas fa-sign-out-alt" (click)="exit()"></i>
+    </div>
   </div>
 </div>
