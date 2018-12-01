@@ -1,3 +1,14 @@
 .content {
-  padding: 20px;
+  padding: 0 20px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 20px 0 20px;
+  .green {
+    position: absolute;
+    right: 20px;
+  }
+
 }
