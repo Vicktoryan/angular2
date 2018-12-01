@@ -17,11 +17,19 @@ button {
   width: max-content;
   padding: 8px;
   cursor: pointer;
+  text-transform: uppercase;
   &.green {
     background: #1c7430;
     color: #fff;
     &:hover {
       background: #0b2e13;
+    }
+  }
+  &.red {
+    background: #67000b;
+    color: #fff;
+    &:hover {
+      background: #b6000b;
     }
   }
   &.disabled {

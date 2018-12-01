@@ -9,7 +9,8 @@ export class AuthGuard implements CanActivate {
   constructor(
     private headerService: HeaderService,
     private commonService: CommonService
-  ) { }
+  ) {
+  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.headerService.notifyHeader(true);

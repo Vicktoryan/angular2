@@ -2,5 +2,6 @@ export interface IUserInformation {
   userId: string,
   firstName: string,
   lastName: string,
-  userFullName: string
+  userFullName: string,
+  rules: string[]
 }

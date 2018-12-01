@@ -40,7 +40,7 @@ export class CommonService {
 
   public clearUserInfo(): void {
     localStorage.removeItem('currentUser');
-    this.headerService.notifyHeader(true);
+    //this.headerService.notifyHeader(true);
   }
 
   private setUserInformation(): void {
@@ -48,7 +48,8 @@ export class CommonService {
       userId: '1',
       firstName: 'Test',
       lastName: 'Name',
-      userFullName: 'Test Name'
+      userFullName: 'Test Name',
+      rules: ['1', '2']
     };
 
     localStorage.setItem('currentUser', JSON.stringify(this.userInformation));

@@ -1,0 +1,7 @@
+<div class="breadcrumbPanel" *ngIf="breadcrumbs.length > 0">
+  <ul>
+    <li *ngFor="let breadcrumb of breadcrumbs; index as i;">
+      {{breadcrumb.name}}
+    </li>
+  </ul>
+</div>

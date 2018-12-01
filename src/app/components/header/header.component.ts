@@ -25,10 +25,11 @@ export class HeaderComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    console.log(1);
     this.subscription = this.headerService.getHeaderObserve().subscribe((isShow: boolean) => {
+      console.log(isShow);
       this.isShowHeader = isShow;
     });
-    //this.userInformation = this.commonService.getUserInformation();
   }
 
   public ngOnDestroy(): void {
@@ -36,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public login(): void {
-    this.headerService.notifyHeader(false);
+    //this.headerService.notifyHeader(false);
     this.router.navigate([ '/login' ]);
   }
 
