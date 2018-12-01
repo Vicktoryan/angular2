@@ -5,6 +5,7 @@
   flex-direction: row;
   border-radius: 10px;
   margin-top: 10px;
+  background: #fff3bb30;
 }
 
 .trumb {
@@ -13,14 +14,45 @@
   min-width: 100px;
   max-width: 100px;
   border: 1px solid #aaa;
+  background: #fff;
+  i {
+    color: #ccc;
+    font-size: 60px;
+    margin: 20px 27px;
+  }
 }
 
 .description {
-  font-size: 12px;
-  color: #ccc;
+  color: #444;
   width: 100%;
   padding: 0px 10px;
+  .name {
+    display: flex;
+    flex-direction: row;
+    .link {
+      font-weight: bold;
+      width: 100%;
+    }
+    .time {
+      color: #aaa;
+      width: 100px;
+      min-width: 100px;
+      max-width: 100px;
+    }
+    .startDate {
+      color: #aaa;
+      width: 80px;
+      min-width: 80px;
+      max-width: 80px;
+    }
+  }
+  .text {
+    padding-top: 10px;
+    font-size: 12px;
+  }
 }
+
+
 
 .actions {
   width: 100px;

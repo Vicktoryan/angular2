@@ -24,7 +24,7 @@ export class CourseListService {
         description: '456567',
         createDate: new Date(),
         duration: 100,
-        startDate: null
+        startDate: new Date()
       }];
       resolve(items);
     });

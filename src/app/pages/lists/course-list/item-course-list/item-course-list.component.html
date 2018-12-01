@@ -1,11 +1,19 @@
 <div class="content">
-  <div class="trumb"></div>
+  <div class="trumb">
+    <i class="far fa-file-image"></i>
+  </div>
   <div class="description">
     <div class="name">
-      <span>{{item.name}}</span>
-      <span>{{item.duration}}</span>
+      <div class="link">{{item.name}}</div>
+      <div class="time">
+        <span>{{item.durationHour}}</span>
+        <span>{{item.durationMinutes}}</span>
+      </div>
+      <div class="startDate">
+        {{item.startDate | date: 'M.dd.yyyy'}}
+      </div>
     </div>
-    <div>{{item.description}}</div>
+    <div class="text">{{item.description}}</div>
   </div>
   <div class="actions">
     <button

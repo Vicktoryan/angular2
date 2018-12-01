@@ -20,6 +20,11 @@ export class ItemCourseListComponent implements OnInit {
   }
 
   ngOnInit() {
+    const duration: string[] = (this.item.duration / 60).toString().split('.');
+    this.item.durationHour = +duration[0] > 0 ? `${duration[0]}h ` : '';
+    const minutes: number = Math.round(+(`0.${duration[1]}`)* 60);
+    this.item.durationMinutes = +minutes > 0 ? `${minutes}min` : '';
+
     const userInfo: IUserInformation = CommonService.getUserInformation();
     if (userInfo.rules) {
       if (userInfo.rules.includes(UserRules.MODIFY_COURSE)) {

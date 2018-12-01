@@ -4,5 +4,7 @@ export interface ICourseItem {
   description: string,
   createDate: Date,
   duration: number,
-  startDate: Date
+  startDate: Date,
+  durationHour?: string;
+  durationMinutes?: string;
 }
