@@ -1,9 +1,9 @@
 import { UserInformation } from '../app/interfaces/UserInformation';
 export class UserInformationClass implements UserInformation {
-  private userId: string;
-  private firstName: string;
-  private lastName: string;
-  private userFullName: string;
-  private rules: string[];
+  public userId: string;
+  public firstName: string;
+  public lastName: string;
+  public userFullName: string;
+  public rules: string[];
   constructor() {}
 }

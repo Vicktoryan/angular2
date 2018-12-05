@@ -1,13 +1,13 @@
 import { CourseItem } from '../app/interfaces/CourseItem';
 
 export class CourseItemClass implements CourseItem {
-  private id: string;
-  private name: string;
-  private description: string;
-  private createDate: Date;
-  private duration: number;
-  private startDate: Date;
-  private durationHour: string;
-  private durationMinutes: string;
+  public id: string;
+  public name: string;
+  public description: string;
+  public createDate: Date;
+  public duration: number;
+  public startDate: Date;
+  public durationHour: string;
+  public durationMinutes: string;
   constructor() {}
 }
