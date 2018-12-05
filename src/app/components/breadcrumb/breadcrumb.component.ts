@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
-import { IBreadcrumb } from '../../interfaces/IBreadcrumb';
+import { Breadcrumb } from '../../interfaces/Breadcrumb';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -9,7 +9,7 @@ import { IBreadcrumb } from '../../interfaces/IBreadcrumb';
   styleUrls: [ './breadcrumb.component.scss' ]
 })
 export class BreadcrumbComponent implements OnInit {
-  public breadcrumbs: IBreadcrumb[] = [];
+  public breadcrumbs: Breadcrumb[] = [];
   private subscription: Subscription;
 
   constructor(
@@ -18,7 +18,7 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.subscription = this.breadcrumbService.getBreadcrumbObserve().subscribe((breadcrumbs: IBreadcrumb[]) => {
+    this.subscription = this.breadcrumbService.getBreadcrumbObserve().subscribe((breadcrumbs: Breadcrumb[]) => {
       this.breadcrumbs = breadcrumbs;
     });
 

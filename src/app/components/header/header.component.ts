@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CommonService } from '../../services/common.service';
 import { HeaderService } from '../../services/header.service';
-import { IUserInformation } from '../../interfaces/IUserInformation';
+import { UserInformation } from '../../interfaces/UserInformation';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +12,7 @@ import { IUserInformation } from '../../interfaces/IUserInformation';
 })
 export class HeaderComponent implements OnInit {
   public isShowHeader: boolean = false;
-  public userInformation: IUserInformation;
+  public userInformation: UserInformation;
   public cService = CommonService;
   private subscription: Subscription;
 
@@ -25,9 +25,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    console.log(1);
     this.subscription = this.headerService.getHeaderObserve().subscribe((isShow: boolean) => {
-      console.log(isShow);
       this.isShowHeader = isShow;
     });
   }

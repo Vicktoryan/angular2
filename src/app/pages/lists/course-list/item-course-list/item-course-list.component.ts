@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ICourseItem } from '../../../../interfaces/ICourseItem';
+import { CourseItem } from '../../../../interfaces/CourseItem';
 import { CommonService } from '../../../../services/common.service';
-import { IUserInformation } from '../../../../interfaces/IUserInformation';
-import { IActions } from '../../../../interfaces/IActions';
+import { UserInformation } from '../../../../interfaces/UserInformation';
+import { Actions } from '../../../../interfaces/Actions';
 import { UserRules } from '../../../../enums/UserRules';
 
 @Component({
@@ -11,8 +11,8 @@ import { UserRules } from '../../../../enums/UserRules';
   styleUrls: [ './item-course-list.component.scss' ]
 })
 export class ItemCourseListComponent implements OnInit {
-  @Input() item: ICourseItem;
-  public actions: IActions[] = [];
+  @Input() item: CourseItem;
+  public actions: Actions[] = [];
 
   constructor(
     private commonService: CommonService
@@ -25,7 +25,7 @@ export class ItemCourseListComponent implements OnInit {
     const minutes: number = Math.round(+(`0.${duration[1]}`)* 60);
     this.item.durationMinutes = +minutes > 0 ? `${minutes}min` : '';
 
-    const userInfo: IUserInformation = CommonService.getUserInformation();
+    const userInfo: UserInformation = CommonService.getUserInformation();
     if (userInfo.rules) {
       if (userInfo.rules.includes(UserRules.MODIFY_COURSE)) {
         this.actions.push({

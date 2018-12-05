@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ICourseItem } from '../../../interfaces/ICourseItem';
+import { CourseItem } from '../../../interfaces/CourseItem';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class CourseListService {
 
   public getItems() {
     const promise = new Promise((resolve) => {
-      const items: ICourseItem[] = [{
+      const items: CourseItem[] = [{
         id: '1',
         name: '1',
         description: '1234',

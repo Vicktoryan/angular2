@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { IBreadcrumb } from '../interfaces/IBreadcrumb';
+import { Breadcrumb } from '../interfaces/Breadcrumb';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BreadcrumbService {
-  private breadcrumbs: IBreadcrumb[] = [];
+  private breadcrumbs: Breadcrumb[] = [];
   private subject = new Subject<any>();
 
   constructor(
     private router: Router
   ) {
-    // console.log(router);
     this.initBreadcrumbs();
   }
 

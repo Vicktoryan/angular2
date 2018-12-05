@@ -12,10 +12,10 @@ export class AppComponent {
 
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
 
   }
 }

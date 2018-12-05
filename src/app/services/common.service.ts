@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IUserInformation } from "../interfaces/IUserInformation";
+import { UserInformation } from "../interfaces/UserInformation";
 import { Router } from '@angular/router';
 import { HeaderService } from './header.service';
 
@@ -7,7 +7,7 @@ import { HeaderService } from './header.service';
   providedIn: 'root'
 })
 export class CommonService {
-  private userInformation: IUserInformation;
+  private userInformation: UserInformation;
 
   constructor(
     private headerService: HeaderService,
@@ -16,7 +16,7 @@ export class CommonService {
 
   }
 
-  static getUserInformation(): IUserInformation {
+  static getUserInformation(): UserInformation {
     const userInfo: string = localStorage.getItem('currentUser') || '{}';
     return JSON.parse(userInfo);
   }

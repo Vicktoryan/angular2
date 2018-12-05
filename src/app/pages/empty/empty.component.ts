@@ -9,8 +9,7 @@ export class EmptyComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(1);
+  public ngOnInit() {
   }
 
 }
