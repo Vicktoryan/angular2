@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CourseItem } from '../../../../interfaces/CourseItem';
 import { CommonService } from '../../../../services/common.service';
 import { UserInformation } from '../../../../interfaces/UserInformation';
@@ -12,6 +12,7 @@ import { UserRules } from '../../../../enums/UserRules';
 })
 export class ItemCourseListComponent implements OnInit {
   @Input() item: CourseItem;
+  @Output() remove = new EventEmitter();;
   public actions: Actions[] = [];
 
   constructor(
@@ -46,13 +47,20 @@ export class ItemCourseListComponent implements OnInit {
     }
   }
 
+
+  public onRemove(): void {
+
+  }
+
   public doAction(actionName: string): void {
+
     switch (actionName) {
       case 'modify': {
 
         break;
       }
       case 'remove': {
+        this.remove.emit();
         break;
       }
       default:

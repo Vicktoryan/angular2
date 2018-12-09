@@ -20,4 +20,8 @@ export class CourseListComponent implements OnInit {
       this.items = items;
     });
   }
+
+  public onRemove(): void {
+    console.log('Test');
+  }
 }

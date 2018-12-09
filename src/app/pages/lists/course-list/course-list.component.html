@@ -3,5 +3,5 @@
   <button class="green">Add course</button>
 </div>
 <div class="content">
-  <app-item-course-list *ngFor="let item of items" [item]="item"></app-item-course-list>
+  <app-item-course-list *ngFor="let item of items" [item]="item" (remove)="onRemove()"></app-item-course-list>
 </div>
