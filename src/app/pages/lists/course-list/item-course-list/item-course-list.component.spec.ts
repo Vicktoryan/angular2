@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ItemCourseListComponent } from './item-course-list.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ItemCourseListComponent', () => {
   let component: ItemCourseListComponent;
@@ -8,6 +9,9 @@ describe('ItemCourseListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       declarations: [ ItemCourseListComponent ]
     })
     .compileComponents();
@@ -16,6 +20,7 @@ describe('ItemCourseListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ItemCourseListComponent);
     component = fixture.componentInstance;
+    Object.assign(component, { item: {} });
     fixture.detectChanges();
   });
 
