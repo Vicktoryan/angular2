@@ -15,6 +15,8 @@ import { EmptyComponent } from './pages/empty/empty.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { ItemCourseListComponent } from './pages/lists/course-list/item-course-list/item-course-list.component';
 import { FilterListComponent } from './pages/lists/filter-list/filter-list.component';
+import { DurationPipe } from './pipes/duration.pipe';
+import { ItemStateDirective } from './directives/item-state.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { FilterListComponent } from './pages/lists/filter-list/filter-list.compo
     EmptyComponent,
     BreadcrumbComponent,
     ItemCourseListComponent,
-    FilterListComponent
+    FilterListComponent,
+    DurationPipe,
+    ItemStateDirective
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,8 @@ import { CourseListComponent } from './course-list.component';
 import { FilterListComponent } from '../filter-list/filter-list.component';
 import { ItemCourseListComponent } from './item-course-list/item-course-list.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { DurationPipe } from '../../../pipes/duration.pipe';
+import { ItemStateDirective } from '../../../directives/item-state.directive';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -17,7 +19,9 @@ describe('CourseListComponent', () => {
       declarations: [
         CourseListComponent,
         FilterListComponent,
-        ItemCourseListComponent
+        ItemCourseListComponent,
+        DurationPipe,
+        ItemStateDirective
       ]
     })
     .compileComponents();

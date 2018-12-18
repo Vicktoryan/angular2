@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" [appItemState]="item">
   <div class="trumb">
     <i class="far fa-file-image"></i>
   </div>
@@ -6,8 +6,7 @@
     <div class="name">
       <div class="link">{{item.name}}</div>
       <div class="time">
-        <span>{{item.durationHour}}</span>
-        <span>{{item.durationMinutes}}</span>
+        {{item.duration | duration}}
       </div>
       <div class="startDate">
         {{item.startDate | date: 'M.dd.yyyy'}}
