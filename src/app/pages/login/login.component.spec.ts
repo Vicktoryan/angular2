@@ -4,8 +4,14 @@ import { LoginComponent } from './login.component';
 import { LogoComponent } from '../../components/logo/logo.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CommonService } from '../../services/common.service';
+import { AlertService } from '../../services/alert.service';
 
 describe('LoginComponent', () => {
+  let fixture: ComponentFixture<LoginComponent>;
+  let component: LoginComponent;
+  let commonService: CommonService;
+  let alertService: AlertService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -18,9 +24,15 @@ describe('LoginComponent', () => {
     .compileComponents();
   }));
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    commonService = TestBed.get(CommonService);
+    alertService = TestBed.get(AlertService);
+  });
+
   it('should create', () => {
-    const fixture = TestBed.createComponent(LoginComponent);
-    const component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 
@@ -30,5 +42,15 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should click onInit', () => {
+    component.ngOnInit();
+  });
 
+  it('should click singIn', () => {
+    component.singIn();
+    commonService.login('1', '1')
+    .then((isLogin: boolean) => {
+      expect(isLogin).toBeTruthy();
+    });
+  });
 });

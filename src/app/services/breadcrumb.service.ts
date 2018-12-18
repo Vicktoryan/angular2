@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class BreadcrumbService {
-  private breadcrumbs: Breadcrumb[] = [];
+  breadcrumbs: Breadcrumb[] = [];
   private subject = new Subject<any>();
 
   constructor(

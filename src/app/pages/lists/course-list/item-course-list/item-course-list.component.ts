@@ -27,7 +27,7 @@ export class ItemCourseListComponent implements OnInit {
     this.item.durationMinutes = +minutes > 0 ? `${minutes}min` : '';
 
     const userInfo: UserInformation = CommonService.getUserInformation();
-    if (userInfo.rules) {
+    if (userInfo.rules && userInfo.rules.length > 0) {
       if (userInfo.rules.includes(UserRules.MODIFY_COURSE)) {
         this.actions.push({
           name: 'modify',
@@ -47,13 +47,7 @@ export class ItemCourseListComponent implements OnInit {
     }
   }
 
-
-  public onRemove(): void {
-
-  }
-
   public doAction(actionName: string): void {
-
     switch (actionName) {
       case 'modify': {
 

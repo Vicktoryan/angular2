@@ -7,7 +7,7 @@ import { Alert } from "../interfaces/Alert";
 })
 export class AlertService {
   private subject = new Subject<any>();
-  private alertList: Alert[] = [];
+  alertList: Alert[] = [];
 
   constructor() {
   }

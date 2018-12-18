@@ -7,7 +7,7 @@ import { HeaderService } from './header.service';
   providedIn: 'root'
 })
 export class CommonService {
-  private userInformation: UserInformation;
+  public userInformation: UserInformation;
 
   constructor(
     private headerService: HeaderService,
@@ -40,10 +40,9 @@ export class CommonService {
 
   public clearUserInfo(): void {
     localStorage.removeItem('currentUser');
-    //this.headerService.notifyHeader(true);
   }
 
-  private setUserInformation(): void {
+  public setUserInformation(): void {
     this.userInformation = {
       userId: '1',
       firstName: 'Test',
