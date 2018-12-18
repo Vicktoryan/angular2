@@ -11,8 +11,12 @@ describe('HeaderService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should be notifyHeader', () => {
+  it('should be notifyHeader true', () => {
     service.notifyHeader(true);
+  });
+
+  it('should be notifyHeader empty', () => {
+    service.notifyHeader();
   });
 
 });
