@@ -16,12 +16,20 @@ export class CourseListComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.courseListService.getItems().then((items: CourseItem[]) => {
-      this.items = items;
-    });
+    this.loadData();
   }
 
   public onRemove(): void {
     console.log('Test');
+  }
+
+  public onSearch(search: string): void {
+    this.loadData(search);
+  }
+
+  private loadData(search: string = null): void {
+    this.courseListService.getItems(search).then((items: CourseItem[]) => {
+      this.items = items;
+    });
   }
 }

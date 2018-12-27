@@ -9,23 +9,37 @@ export class CourseListService {
   constructor() {
   }
 
-  public getItems() {
+  public getItems(search: string) {
     const promise = new Promise((resolve) => {
-      const items: CourseItem[] = [{
+      let items: CourseItem[] = [{
         id: '1',
         name: '1',
         description: '1234',
         createDate: new Date(),
         duration: 10,
-        startDate: null
+        startDate: null,
+        topRate: false
       }, {
         id: '2',
         name: '2',
         description: '456567',
         createDate: new Date(),
         duration: 100,
-        startDate: new Date('12/12/2018')
+        startDate: new Date('12/12/2018'),
+        topRate: true
+      }, {
+        id: '3',
+        name: '4562',
+        description: '456567',
+        createDate: new Date(),
+        duration: 100,
+        startDate: new Date(),
+        topRate: true
       }];
+      if (search) {
+        items = items.filter((item: CourseItem) => item.name.toLowerCase().includes(search.toLowerCase()));
+      }
+
       resolve(items);
     });
     return promise;

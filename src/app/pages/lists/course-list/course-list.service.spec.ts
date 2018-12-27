@@ -3,13 +3,19 @@ import { TestBed } from '@angular/core/testing';
 import { CourseListService } from './course-list.service';
 
 describe('CourseListService', () => {
+  let service: CourseListService;
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: CourseListService = TestBed.get(CourseListService);
+    service = TestBed.get(CourseListService);
     expect(service).toBeTruthy();
   });
 
+  it('should getItems', () => {
+    service.getItems(null);
+  });
 
-
+  it('should getItems', () => {
+    service.getItems('2');
+  });
 });

@@ -4,6 +4,12 @@
   </div>
   <div class="description">
     <div class="name">
+      <div>
+        <i
+          [class.far]="item.topRate === false"
+          [class.fas]="item.topRate === true"
+          class="fa-star"></i>
+      </div>&nbsp;
       <div class="link">{{item.name}}</div>
       <div class="time">
         {{item.duration | duration}}

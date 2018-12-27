@@ -1,6 +1,6 @@
 <div>
-  <input type="text">
-  <button class="blue">
+  <input type="text" [(ngModel)]="searchValue" placeholder="Search">
+  <button class="blue" (click)="onSearch()">
     <i class="fas fa-sync-alt"></i>
   </button>
 </div>

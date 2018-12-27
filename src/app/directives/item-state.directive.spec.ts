@@ -17,7 +17,7 @@ describe('ItemStateDirective', () => {
     };
   });
 
-  it('should onInit true', () => {
+  it('should onInit startDate > new Date()', () => {
     directive.ngOnInit();
     expect(directive.item.duration).toEqual(100);
     const result = directive.item.duration && directive.item.startDate;
@@ -25,6 +25,25 @@ describe('ItemStateDirective', () => {
     const startDate = (new Date(directive.item.startDate).getTime() + directive.item.duration * 60000);
     const date: Date = new Date();
     let compare = date.getTime() > startDate;
+    expect(compare).toBeTruthy();
+  });
+
+  it('should onInit startDate < new Date()', () => {
+    directive.item = {
+      id: '',
+      startDate: new Date(),
+      duration: 100,
+      name: '',
+      description: '',
+      createDate: new Date()
+    };
+    directive.ngOnInit();
+    expect(directive.item.duration).toEqual(100);
+    const result = directive.item.duration && directive.item.startDate;
+    expect(result).toBeTruthy();
+    const startDate = (new Date(directive.item.startDate).getTime() + directive.item.duration * 60000);
+    const date: Date = new Date();
+    let compare = date.getTime() <= startDate;
     expect(compare).toBeTruthy();
   });
 });

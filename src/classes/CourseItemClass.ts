@@ -9,5 +9,6 @@ export class CourseItemClass implements CourseItem {
   public startDate: Date;
   public durationHour: string;
   public durationMinutes: string;
+  public topRate: boolean;
   constructor() {}
 }

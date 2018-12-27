@@ -13,7 +13,7 @@ import { UserRules } from '../../../../enums/UserRules';
 })
 export class ItemCourseListComponent implements OnInit {
   @Input() item: CourseItem;
-  @Output() remove = new EventEmitter();;
+  @Output() remove = new EventEmitter();
   public actions: Actions[] = [];
 
   constructor(

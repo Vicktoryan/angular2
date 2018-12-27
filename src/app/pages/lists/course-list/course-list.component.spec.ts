@@ -6,6 +6,8 @@ import { ItemCourseListComponent } from './item-course-list/item-course-list.com
 import { RouterTestingModule } from '@angular/router/testing';
 import { DurationPipe } from '../../../pipes/duration.pipe';
 import { ItemStateDirective } from '../../../directives/item-state.directive';
+import { OrderModule } from 'ngx-order-pipe';
+import { FormsModule } from '@angular/forms';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -14,7 +16,9 @@ describe('CourseListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        OrderModule,
+       FormsModule
       ],
       declarations: [
         CourseListComponent,
@@ -54,4 +58,8 @@ describe('CourseListComponent', () => {
     fixture.detectChanges();
   });
 
+  it('should onSearch', () => {
+    component.onSearch('1');
+    fixture.detectChanges();
+  });
 });

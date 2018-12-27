@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { ItemCourseListComponent } from './pages/lists/course-list/item-course-l
 import { FilterListComponent } from './pages/lists/filter-list/filter-list.component';
 import { DurationPipe } from './pipes/duration.pipe';
 import { ItemStateDirective } from './directives/item-state.directive';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { ItemStateDirective } from './directives/item-state.directive';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OrderModule,
+    FormsModule
   ],
   providers: [
     AuthGuard

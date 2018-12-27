@@ -17,6 +17,8 @@ export class ItemStateDirective {
       const date: Date = new Date();
       if (date.getTime() > startDate) {
         this.el.nativeElement.style.borderColor = 'green';
+      } else if (date.getTime() <= startDate) {
+        this.el.nativeElement.style.borderColor = 'blue';
       }
     }
   }
