@@ -1,3 +1,33 @@
-<p>
-  course works!
-</p>
+<div style="display: flex; flex-direction: column; padding: 20px;">
+  <div class="element">
+    <label for="title">Title</label>
+    <input id="title" type="text" [(ngModel)]="title">
+  </div>
+  <div class="element">
+    <label for="description">Description</label>
+    <textarea id="description" type="text" [(ngModel)]="description"></textarea>
+  </div>
+  <div class="element">
+    <label for="date">Date</label>
+    <input id="date" type="text" [(ngModel)]="date">
+  </div>
+  <div class="element">
+    <label for="duration">Duration</label>
+    <div style="display: flex; flex-direction: row">
+      <input id="duration" type="text" [(ngModel)]="duration">
+      <div>{{duration | duration}}</div>
+    </div>
+  </div>
+  <div>
+    <label for="authors">Authors</label>
+    <div></div>
+  </div>
+  <div style="display: flex; flex-direction:row; width: 200px; justify-content: space-between;">
+    <button>
+      Cancel
+    </button>
+    <button>
+      Save
+    </button>
+  </div>
+</div>

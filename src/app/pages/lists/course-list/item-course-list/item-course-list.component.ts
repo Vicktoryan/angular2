@@ -4,6 +4,7 @@ import { CommonService } from '../../../../services/common.service';
 import { UserInformation } from '../../../../interfaces/UserInformation';
 import { Actions } from '../../../../interfaces/Actions';
 import { UserRules } from '../../../../enums/UserRules';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-item-course-list',
@@ -17,6 +18,7 @@ export class ItemCourseListComponent implements OnInit {
   public actions: Actions[] = [];
 
   constructor(
+    private router: Router,
     private commonService: CommonService
   ) {
   }
@@ -46,7 +48,7 @@ export class ItemCourseListComponent implements OnInit {
   public doAction(actionName: string): void {
     switch (actionName) {
       case 'modify': {
-
+        this.router.navigate([ '/course', this.item.id, { queryParams: { id: this.item.id } ]);
         break;
       }
       case 'remove': {

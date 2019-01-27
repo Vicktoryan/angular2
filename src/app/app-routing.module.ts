@@ -9,7 +9,7 @@ import { EmptyComponent } from './pages/empty/empty.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'course-list', component: CourseListComponent, canActivate: [AuthGuard] },
-  { path: 'course', component: CourseComponent, canActivate: [AuthGuard] },
+  { path: 'course/:id', component: CourseComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/course-list', pathMatch: 'full' },
   { path: '**', component: EmptyComponent },
   { path: '404', component: EmptyComponent }
