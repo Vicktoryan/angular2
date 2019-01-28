@@ -48,7 +48,7 @@ export class ItemCourseListComponent implements OnInit {
   public doAction(actionName: string): void {
     switch (actionName) {
       case 'modify': {
-        this.router.navigate([ '/course', this.item.id, { queryParams: { id: this.item.id } ]);
+        this.router.navigate([ '/course', this.item.id]);
         break;
       }
       case 'remove': {
