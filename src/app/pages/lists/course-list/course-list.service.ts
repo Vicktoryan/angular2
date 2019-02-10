@@ -8,49 +8,19 @@ import { CommonEnums } from '../../../enums/CommonEnums';
 })
 export class CourseListService {
   private items: CourseItem[] = [];
-//   {
-//   id: '1',
-//     name: '1',
-//     description: '1234',
-//     createDate: new Date(),
-//     duration: 10,
-//     startDate: null,
-//     topRate: false
-// }, {
-//   id: '2',
-//     name: '2',
-//     description: '456567',
-//     createDate: new Date(),
-//     duration: 100,
-//     startDate: new Date('12/12/2018'),
-//     topRate: true
-// }, {
-//   id: '3',
-//     name: '4562',
-//     description: '456567',
-//     createDate: new Date(),
-//     duration: 100,
-//     startDate: new Date(),
-//     topRate: true
-// } ];
-
   constructor(
     private http: HttpClient
   ) {
   }
 
-  public loadDate(): void {
-
-  }
-
   public getItems(search: string, isMore: boolean) {
     const promise = new Promise((resolve) => {
-      this.loadDate()
+      let textFragment: string = '';
       if (search) {
-        this.items = this.items.filter((item: CourseItem) => item.name.toLowerCase().includes(search.toLowerCase()));
+        textFragment = `&textFragment=${search}`;
       }
       const start: number = isMore ? this.items.length : 0;
-      this.http.get(`${CommonEnums.apiUrl}courses?start=${start}&count=5`).subscribe((items: any[]) => {
+      this.http.get(`${CommonEnums.apiUrl}courses?start=${start}&count=5${textFragment}`).subscribe((items: any[]) => {
         items.forEach((item) => {
           item.duration = item.length;
           item.createDate = item.date;
