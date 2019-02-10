@@ -51,7 +51,7 @@ export class ItemCourseListComponent implements OnInit {
     switch (actionName) {
       case 'modify': {
         this.breadcrumbService.setItem(this.item.name, `/course/${this.item.id}`);
-        this.router.navigate([ '/course', this.item.id]);
+        this.router.navigate([ `/course/${this.item.id}`]);
         break;
       }
       case 'remove': {

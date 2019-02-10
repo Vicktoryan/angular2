@@ -69,7 +69,7 @@ export class CourseListService {
     return promise;
   }
 
-  public getItem(id: string = null): CourseItem {
+  public getItem(id: string = null) {
     const promise = new Promise((resolve) => {
       if (!id || id === 'new') {
         resolve({
@@ -82,7 +82,13 @@ export class CourseListService {
           isTopRated: false
         });
       } else {
-        this.http.get(`${CommonEnums.apiUrl}courses/${id}`).subscribe((item) => {
+        this.http.get(`${CommonEnums.apiUrl}courses/${id}`)
+        .subscribe((item: {
+          date: Date,
+          length: number,
+          createDate: Date,
+          duration: number
+        }) => {
           item.createDate = item.date;
           item.duration = item.length;
           resolve(item);

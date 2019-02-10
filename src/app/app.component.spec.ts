@@ -10,6 +10,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LogoComponent } from './components/logo/logo.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   //
@@ -30,7 +31,8 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientTestingModule
       ],
       declarations: [
         AppComponent,

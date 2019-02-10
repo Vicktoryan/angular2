@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonService } from '../../services/common.service';
 import { AlertService } from '../../services/alert.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
@@ -17,7 +18,8 @@ describe('LoginComponent', () => {
       imports: [
         RouterTestingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientTestingModule
       ],
       declarations: [ LoginComponent, LogoComponent ]
     })

@@ -33,7 +33,6 @@ export class CourseComponent implements OnInit {
       this.id = params[ 'id' ]; // (+) converts string 'id' to a number
       if (this.id) {
         const item: CourseItem = this.courseListService.getItem(this.id).then((item: CourseItem) => {
-          console.log(item);
           this.title = item.name;
           this.description = item.description;
           this.date = this.datePipe.transform(new Date(item.createDate), 'MM.dd.yyyy');

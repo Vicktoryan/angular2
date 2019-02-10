@@ -7,6 +7,7 @@ import { HeaderService } from '../../services/header.service';
 import { of } from 'rxjs';
 
 import { CommonService } from '../../services/common.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -17,8 +18,8 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
-
+        RouterTestingModule,
+        HttpClientTestingModule
       ],
       declarations: [ HeaderComponent, LogoComponent ],
       providers: [

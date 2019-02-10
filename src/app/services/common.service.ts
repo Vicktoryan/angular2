@@ -29,19 +29,21 @@ export class CommonService {
   public login(login: string, password: string) {
     const promise = new Promise((resolve) => {
 
-      this.http.post(`${CommonEnums.apiUrl}auth/login`, { login, password }).subscribe((token) => {
+      this.http.post(`${CommonEnums.apiUrl}auth/login`, { login, password }).subscribe((token: { token: string }) => {
 
         if (token) {
           const headers = new HttpHeaders().set('Authorization', token.token);
 
           this.http.post(`${CommonEnums.apiUrl}auth/userinfo`, null, { headers })
-          .subscribe((user : {
-            id: string,
-            name: {
-              first: string,
-              last: string
+          .subscribe((
+            user: {
+              id: string,
+              name: {
+                first: string,
+                last: string
+              }
             }
-          }) => {
+          ) => {
             this.userInformation = {
               userId: user.id,
               firstName: user.name.first,

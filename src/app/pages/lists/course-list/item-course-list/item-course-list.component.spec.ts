@@ -7,6 +7,7 @@ import { UserRules } from '../../../../enums/UserRules';
 import { ItemStateDirective } from '../../../../directives/item-state.directive';
 import { DurationPipe } from '../../../../pipes/duration.pipe';
 import { UserInformation } from '../../../../interfaces/UserInformation';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ItemCourseListComponent', () => {
   let component: ItemCourseListComponent;
@@ -16,7 +17,8 @@ describe('ItemCourseListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientTestingModule
       ],
       declarations: [ ItemCourseListComponent, ItemStateDirective, DurationPipe ]
     })

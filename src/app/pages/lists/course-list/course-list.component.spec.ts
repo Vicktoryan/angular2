@@ -8,6 +8,7 @@ import { DurationPipe } from '../../../pipes/duration.pipe';
 import { ItemStateDirective } from '../../../directives/item-state.directive';
 import { OrderModule } from 'ngx-order-pipe';
 import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -18,7 +19,8 @@ describe('CourseListComponent', () => {
       imports: [
         RouterTestingModule,
         OrderModule,
-       FormsModule
+        FormsModule,
+        HttpClientTestingModule
       ],
       declarations: [
         CourseListComponent,
