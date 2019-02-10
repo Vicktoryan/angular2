@@ -5,6 +5,7 @@ import { UserInformation } from '../../../../interfaces/UserInformation';
 import { Actions } from '../../../../interfaces/Actions';
 import { UserRules } from '../../../../enums/UserRules';
 import { Router } from "@angular/router";
+import { BreadcrumbService } from '../../../../services/breadcrumb.service';
 
 @Component({
   selector: 'app-item-course-list',
@@ -19,7 +20,8 @@ export class ItemCourseListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private breadcrumbService: BreadcrumbService
   ) {
   }
 
@@ -48,6 +50,7 @@ export class ItemCourseListComponent implements OnInit {
   public doAction(actionName: string): void {
     switch (actionName) {
       case 'modify': {
+        this.breadcrumbService.setItem(this.item.name, `/course/${this.item.id}`);
         this.router.navigate([ '/course', this.item.id]);
         break;
       }

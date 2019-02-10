@@ -2,11 +2,19 @@
   width: 100%;
   border-bottom: 1px solid #ccc;
   background: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   ul {
     padding: 5px;
     list-style-type: none;
     margin: 0;
     font-size: 12px;
+    li {
+      display: inline;
+    }
   }
+}
+
+.noLink {
+  color: #000;
+  text-decoration: none;
 }

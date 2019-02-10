@@ -3,18 +3,19 @@ import { ActivatedRoute } from '@angular/router';
 import { CourseListService } from '../../lists/course-list/course-list.service';
 import { CourseItem } from '../../../interfaces/CourseItem';
 import { DatePipe } from '@angular/common';
+import { BreadcrumbService } from '../../../services/breadcrumb.service';
 
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
   styleUrls: [ './course.component.scss' ],
-  providers: [DatePipe]
+  providers: [ DatePipe ]
 })
 export class CourseComponent implements OnInit {
-  @Output() title = new EventEmitter();
-  @Output() description = new EventEmitter();
-  @Output() date = new EventEmitter();
-  @Output() duration = new EventEmitter();
+  @Output() title: EventEmitter<string> = new EventEmitter<string>();
+  @Output() description: EventEmitter<string> = new EventEmitter<string>();
+  @Output() date: EventEmitter<string> = new EventEmitter<string>();
+  @Output() duration: EventEmitter<string> = new EventEmitter<string>();
 
   id: string;
   private sub: any;
@@ -22,7 +23,8 @@ export class CourseComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private datePipe: DatePipe,
-    private courseListService: CourseListService
+    private courseListService: CourseListService,
+    private breadcrumbService: BreadcrumbService
   ) {
   }
 
@@ -31,6 +33,7 @@ export class CourseComponent implements OnInit {
       this.id = params[ 'id' ]; // (+) converts string 'id' to a number
       if (this.id) {
         const item: CourseItem = this.courseListService.getItem(this.id);
+        console.log(item);
         this.title = item.name;
         this.description = item.description;
         this.date = this.datePipe.transform(new Date(item.startDate), 'MM.dd.yyyy');
@@ -43,4 +46,20 @@ export class CourseComponent implements OnInit {
     this.sub.unsubscribe();
   }
 
+  public onCancel(): void {
+    this.breadcrumbService.goBack();
+  }
+
+  public onSave(): void {
+    this.courseListService.setItem({
+      id: <string>this.id,
+      name: <string>this.title,
+      description: <string>this.description,
+      createDate: <Date>new Date(),
+      startDate: <Date>new Date(this.date),
+      duration: <number>this.duration,
+      topRate: false
+    });
+    this.breadcrumbService.goBack();
+  }
 }

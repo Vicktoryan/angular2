@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseListService } from './course-list.service';
 import { CourseItem } from '../../../interfaces/CourseItem';
+import { UserInformation } from '../../../interfaces/UserInformation';
+import { CommonService } from '../../../services/common.service';
+import { Router } from '@angular/router';
+import { BreadcrumbService } from '../../../services/breadcrumb.service';
 
 @Component({
   selector: 'app-course-list',
@@ -9,14 +13,19 @@ import { CourseItem } from '../../../interfaces/CourseItem';
 })
 export class CourseListComponent implements OnInit {
   public items: CourseItem[] = [];
+  public userInfo: UserInformation;
 
   constructor(
-    private courseListService: CourseListService
+    private router: Router,
+    private courseListService: CourseListService,
+    private breadcrumbService: BreadcrumbService
   ) {
   }
 
   public ngOnInit() {
     this.loadData();
+    this.userInfo = CommonService.getUserInformation();
+    console.log(this.userInfo.id);
   }
 
   public onRemove(): void {
@@ -27,8 +36,16 @@ export class CourseListComponent implements OnInit {
     this.loadData(search);
   }
 
+  public onAdd(): void {
+    this.breadcrumbService.setItem('New course', ``);
+    this.router.navigate(['/course/new']);
+  }
+
+
+
   private loadData(search: string = null): void {
     this.courseListService.getItems(search).then((items: CourseItem[]) => {
+
       this.items = items;
     });
   }

@@ -3,8 +3,8 @@ export interface CourseItem {
   name: string;
   description: string;
   createDate: Date;
-  duration: number;
-  startDate: Date;
+  duration?: number;
+  startDate?: Date;
   durationHour?: string;
   durationMinutes?: string;
   topRate?: boolean;

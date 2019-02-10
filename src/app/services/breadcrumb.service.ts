@@ -45,4 +45,11 @@ export class BreadcrumbService {
     }
     this.getItems();
   }
+
+  public goBack(): void {
+    if (this.breadcrumbs.length > 1) {
+      this.breadcrumbs.pop();
+    }
+    this.router.navigate([ this.breadcrumbs[ this.breadcrumbs.length - 1 ].url ])
+  }
 }

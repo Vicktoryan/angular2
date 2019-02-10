@@ -1,7 +1,13 @@
 <div class="breadcrumbPanel" *ngIf="breadcrumbs.length > 0">
   <ul>
     <li *ngFor="let breadcrumb of breadcrumbs; index as i;">
-      {{breadcrumb.name}}
+      <span *ngIf="i>0">&nbsp;/&nbsp;</span>
+      <a
+        [class.noLink]="i === breadcrumbs.length - 1"
+        href="{{breadcrumb.url}}"
+        onclick="return false;"
+        (click)="onClick(i)"
+      >{{breadcrumb.name}}</a>
     </li>
   </ul>
 </div>
