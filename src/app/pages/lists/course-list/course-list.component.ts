@@ -15,6 +15,7 @@ export class CourseListComponent implements OnInit {
   public items: CourseItem[] = [];
   public userInfo: UserInformation;
 
+  private searchText: string;
   constructor(
     private router: Router,
     private courseListService: CourseListService,
@@ -34,6 +35,7 @@ export class CourseListComponent implements OnInit {
 
   public onSearch(search: string): void {
     this.loadData(search);
+    this.searchText = search;
   }
 
   public onAdd(): void {
@@ -41,10 +43,12 @@ export class CourseListComponent implements OnInit {
     this.router.navigate(['/course/new']);
   }
 
+  public onLoadMore(): void {
+    this.loadData(this.searchText, true);
+  }
 
-
-  private loadData(search: string = null): void {
-    this.courseListService.getItems(search).then((items: CourseItem[]) => {
+  private loadData(search: string = null, isMore: boolean = false): void {
+    this.courseListService.getItems(search, isMore).then((items: CourseItem[]) => {
 
       this.items = items;
     });

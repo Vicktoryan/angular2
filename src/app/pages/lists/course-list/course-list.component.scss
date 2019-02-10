@@ -1,5 +1,9 @@
 .content {
   padding: 0 20px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(87% - 30px);
+  display: block;
 }
 
 .filter {
@@ -16,4 +20,13 @@
 .noData {
   width: 100%;
   text-align: center;
+}
+
+.showMore {
+  height: 40px;
+  border: 1px solid #ccc;
+  text-align: center;
+  padding-top: 15px;
+  margin-top: 20px;
+  cursor: pointer;
 }

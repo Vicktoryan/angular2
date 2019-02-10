@@ -18,6 +18,7 @@ import { FilterListComponent } from './pages/lists/filter-list/filter-list.compo
 import { DurationPipe } from './pipes/duration.pipe';
 import { ItemStateDirective } from './directives/item-state.directive';
 import { OrderModule } from 'ngx-order-pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { OrderModule } from 'ngx-order-pipe';
     AppRoutingModule,
     ReactiveFormsModule,
     OrderModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     AuthGuard

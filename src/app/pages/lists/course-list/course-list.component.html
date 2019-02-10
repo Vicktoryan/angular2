@@ -7,6 +7,14 @@
   >Add course</button>
 </div>
 <div class="content">
-  <app-item-course-list *ngFor="let item of items | orderBy: 'item.name': true" [item]="item" (remove)="onRemove()"></app-item-course-list>
+  <div *ngFor="let item of items | orderBy: 'item.name': true">
+    <app-item-course-list [item]="item" (remove)="onRemove()"></app-item-course-list>
+  </div>
+
   <div *ngIf="items.length === 0" class="noData">Do data</div>
+  <div *ngIf="items.length > 0" class="showMore" (click)="onLoadMore()">
+          Show more
+
+  </div>
+
 </div>

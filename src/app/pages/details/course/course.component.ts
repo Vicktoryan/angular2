@@ -32,12 +32,13 @@ export class CourseComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = params[ 'id' ]; // (+) converts string 'id' to a number
       if (this.id) {
-        const item: CourseItem = this.courseListService.getItem(this.id);
-        console.log(item);
-        this.title = item.name;
-        this.description = item.description;
-        this.date = this.datePipe.transform(new Date(item.startDate), 'MM.dd.yyyy');
-        this.duration = item.duration;
+        const item: CourseItem = this.courseListService.getItem(this.id).then((item: CourseItem) => {
+          console.log(item);
+          this.title = item.name;
+          this.description = item.description;
+          this.date = this.datePipe.transform(new Date(item.createDate), 'MM.dd.yyyy');
+          this.duration = item.duration;
+        });
       }
     });
   }
@@ -58,7 +59,7 @@ export class CourseComponent implements OnInit {
       createDate: <Date>new Date(),
       startDate: <Date>new Date(this.date),
       duration: <number>this.duration,
-      topRate: false
+      isTopRated: false
     });
     this.breadcrumbService.goBack();
   }

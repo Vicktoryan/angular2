@@ -7,5 +7,5 @@ export interface CourseItem {
   startDate?: Date;
   durationHour?: string;
   durationMinutes?: string;
-  topRate?: boolean;
+  isTopRated?: boolean;
 }
