@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FilterListComponent } from './filter-list.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('FilterListComponent', () => {
   let component: FilterListComponent;
@@ -9,7 +10,7 @@ describe('FilterListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule ],
+      imports: [ FormsModule, HttpClientTestingModule ],
       declarations: [ FilterListComponent ]
     })
     .compileComponents();

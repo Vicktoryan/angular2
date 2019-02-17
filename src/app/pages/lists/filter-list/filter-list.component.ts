@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { CourseListService } from '../course-list/course-list.service';
 
 @Component({
   selector: 'app-filter-list',
@@ -7,13 +8,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class FilterListComponent implements OnInit {
   searchValue: string;
-  @Output() search = new EventEmitter();
-  constructor() { }
+  constructor(
+    private courseListService: CourseListService
+  ) { }
 
   public ngOnInit() {
   }
 
   public onSearch(): void {
-    this.search.emit(this.searchValue);
+    this.courseListService.notifyGetItems(this.searchValue);
   }
 }

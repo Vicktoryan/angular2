@@ -18,10 +18,10 @@ describe('CourseListService', () => {
   });
 
   it('should getItems', () => {
-    service.getItems(null);
+
   });
 
   it('should getItems', () => {
-    service.getItems('2');
+
   });
 });

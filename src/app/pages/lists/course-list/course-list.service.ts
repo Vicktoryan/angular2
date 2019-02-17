@@ -2,19 +2,25 @@ import { Injectable } from '@angular/core';
 import { CourseItem } from '../../../interfaces/CourseItem';
 import { HttpClient } from '@angular/common/http';
 import { CommonEnums } from '../../../enums/CommonEnums';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseListService {
   private items: CourseItem[] = [];
+  private subject = new Subject<any>();
+
   constructor(
     private http: HttpClient
   ) {
   }
 
-  public getItems(search: string, isMore: boolean) {
-    const promise = new Promise((resolve) => {
+  public getItemsObserve(): Observable<any> {
+    return this.subject.asObservable();
+  }
+
+  public notifyGetItems(search: string = '', isMore: boolean = false): void {
       let textFragment: string = '';
       if (search) {
         textFragment = `&textFragment=${search}`;
@@ -25,18 +31,13 @@ export class CourseListService {
           item.duration = item.length;
           item.createDate = item.date;
         });
-        console.log(items);
         if (isMore) {
           this.items.push(...items);
         } else {
           this.items = items;
         }
-        resolve(this.items);
+        this.subject.next(this.items);
       });
-
-
-    });
-    return promise;
   }
 
   public getItem(id: string = null) {

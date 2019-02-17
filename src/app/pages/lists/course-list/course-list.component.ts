@@ -5,6 +5,7 @@ import { UserInformation } from '../../../interfaces/UserInformation';
 import { CommonService } from '../../../services/common.service';
 import { Router } from '@angular/router';
 import { BreadcrumbService } from '../../../services/breadcrumb.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-course-list',
@@ -14,6 +15,7 @@ import { BreadcrumbService } from '../../../services/breadcrumb.service';
 export class CourseListComponent implements OnInit {
   public items: CourseItem[] = [];
   public userInfo: UserInformation;
+  private subscription: Subscription;
 
   private searchText: string;
   constructor(
@@ -24,17 +26,20 @@ export class CourseListComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.loadData();
     this.userInfo = CommonService.getUserInformation();
-    console.log(this.userInfo.id);
+
+    this.subscription = this.courseListService.getItemsObserve().subscribe((items: CourseItem[]) => {
+      this.items = items;
+    });
+    this.courseListService.notifyGetItems();
   }
 
   public onRemove(): void {
-    console.log('Test');
+
   }
 
   public onSearch(search: string): void {
-    this.loadData(search);
+    this.courseListService.notifyGetItems(search);
     this.searchText = search;
   }
 
@@ -44,13 +49,6 @@ export class CourseListComponent implements OnInit {
   }
 
   public onLoadMore(): void {
-    this.loadData(this.searchText, true);
-  }
-
-  private loadData(search: string = null, isMore: boolean = false): void {
-    this.courseListService.getItems(search, isMore).then((items: CourseItem[]) => {
-
-      this.items = items;
-    });
+    this.courseListService.notifyGetItems(this.searchText, true);
   }
 }
