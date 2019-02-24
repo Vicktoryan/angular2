@@ -1,0 +1,20 @@
+.loader {
+  margin: auto;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.loaderBlock {
+  height: 100%;
+  margin: auto;
+  display: table;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  background: #fff;
+  opacity: 0.5;
+  z-index: 1000;
+}
