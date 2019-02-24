@@ -25,9 +25,4 @@ describe('FilterListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should onSearch', () => {
-    component.onSearch();
-    fixture.detectChanges();
-  });
 });

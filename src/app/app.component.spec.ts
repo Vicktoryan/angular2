@@ -11,6 +11,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { LoginComponent } from './pages/login/login.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoaderComponent } from './loader/loader.component';
 
 describe('AppComponent', () => {
   //
@@ -39,7 +40,8 @@ describe('AppComponent', () => {
         HeaderComponent,
         BreadcrumbComponent,
         AlertComponent,
-        LogoComponent
+        LogoComponent,
+        LoaderComponent
       ],
       schemas: [ ]
     }).compileComponents();
