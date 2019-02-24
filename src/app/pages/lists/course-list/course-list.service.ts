@@ -3,6 +3,7 @@ import { CourseItem } from '../../../interfaces/CourseItem';
 import { HttpClient } from '@angular/common/http';
 import { CommonEnums } from '../../../enums/CommonEnums';
 import { Observable, Subject } from 'rxjs';
+import { LoaderService } from '../../../services/loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class CourseListService {
   private subject = new Subject<any>();
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private loaderService: LoaderService
   ) {
   }
 
@@ -25,6 +27,7 @@ export class CourseListService {
       if (search) {
         textFragment = `&textFragment=${search}`;
       }
+      this.loaderService.startLoader();
       const start: number = isMore ? this.items.length : 0;
       this.http.get(`${CommonEnums.apiUrl}courses?start=${start}&count=5${textFragment}`).subscribe((items: any[]) => {
         items.forEach((item) => {
@@ -36,6 +39,7 @@ export class CourseListService {
         } else {
           this.items = items;
         }
+        this.loaderService.endLoader();
         this.subject.next(this.items);
       });
   }
@@ -53,6 +57,7 @@ export class CourseListService {
           isTopRated: false
         });
       } else {
+        this.loaderService.startLoader();
         this.http.get(`${CommonEnums.apiUrl}courses/${id}`)
         .subscribe((item: {
           date: Date,
@@ -60,6 +65,7 @@ export class CourseListService {
           createDate: Date,
           duration: number
         }) => {
+          this.loaderService.endLoader();
           item.createDate = item.date;
           item.duration = item.length;
           resolve(item);

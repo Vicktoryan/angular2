@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonEnums } from '../enums/CommonEnums';
 import { HttpHeaders } from '@angular/common/http';
 import { Headers } from '@angular/http';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class CommonService {
   constructor(
     private headerService: HeaderService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private loaderService: LoaderService
   ) {
 
   }
@@ -28,7 +30,7 @@ export class CommonService {
 
   public login(login: string, password: string) {
     const promise = new Promise((resolve) => {
-
+      this.loaderService.startLoader();
       this.http.post(`${CommonEnums.apiUrl}auth/login`, { login, password }).subscribe((token: { token: string }) => {
 
         if (token) {
@@ -44,6 +46,7 @@ export class CommonService {
               }
             }
           ) => {
+            this.loaderService.endLoader();
             this.userInformation = {
               userId: user.id,
               firstName: user.name.first,
@@ -57,6 +60,7 @@ export class CommonService {
           });
 
         } else {
+          this.loaderService.endLoader();
           resolve(false);
         }
       });

@@ -17,7 +17,7 @@ export class CourseComponent implements OnInit {
   @Output() date: EventEmitter<string> = new EventEmitter<string>();
   @Output() duration: EventEmitter<string> = new EventEmitter<string>();
 
-  id: string;
+  private id: string;
   private sub: any;
 
   constructor(
