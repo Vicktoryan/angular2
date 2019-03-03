@@ -4,6 +4,7 @@ import { CourseListService } from '../../lists/course-list/course-list.service';
 import { CourseItem } from '../../../interfaces/CourseItem';
 import { DatePipe } from '@angular/common';
 import { BreadcrumbService } from '../../../services/breadcrumb.service';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-course',
@@ -12,34 +13,47 @@ import { BreadcrumbService } from '../../../services/breadcrumb.service';
   providers: [ DatePipe ]
 })
 export class CourseComponent implements OnInit {
-  @Output() title: EventEmitter<string> = new EventEmitter<string>();
-  @Output() description: EventEmitter<string> = new EventEmitter<string>();
-  @Output() date: EventEmitter<string> = new EventEmitter<string>();
-  @Output() duration: EventEmitter<string> = new EventEmitter<string>();
-
   private id: string;
   private sub: any;
-
+  private registerForm: FormGroup;
+  private submitted = false;
+  public authors: {}[] = []
   constructor(
     private route: ActivatedRoute,
     private datePipe: DatePipe,
     private courseListService: CourseListService,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private formBuilder: FormBuilder
   ) {
   }
 
   ngOnInit() {
+
+    this.registerForm = this.formBuilder.group({
+      title: [ '' ],
+      date: [ '' ],
+      duration: [ '' ],
+      description: [ '' ]
+    });
+
     this.sub = this.route.params.subscribe(params => {
       this.id = params[ 'id' ]; // (+) converts string 'id' to a number
       if (this.id) {
         const item: CourseItem = this.courseListService.getItem(this.id).then((item: CourseItem) => {
-          this.title = item.name;
-          this.description = item.description;
-          this.date = this.datePipe.transform(new Date(item.createDate), 'MM.dd.yyyy');
-          this.duration = item.duration;
+          this.registerForm = new FormGroup({
+            title: new FormControl(item.name, Validators.required),
+            date: new FormControl(this.datePipe.transform(new Date(item.createDate), 'MM.dd.yyyy'), Validators.required),
+            duration: new FormControl(item.duration, Validators.required),
+            description: new FormControl(item.description, Validators.required)
+          });
+          this.authors = item.authors;
         });
       }
     });
+  }
+
+  get f() {
+    return this.registerForm.controls;
   }
 
   ngOnDestroy() {
@@ -51,13 +65,20 @@ export class CourseComponent implements OnInit {
   }
 
   public onSave(): void {
+    this.submitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    }
+    console.log(this.registerForm);
+    return;
+    const value = this.registerForm.value;
     this.courseListService.setItem({
       id: <string>this.id,
-      name: <string>this.title,
-      description: <string>this.description,
+      name: <string>value.title,
+      description: <string>value.description,
       createDate: <Date>new Date(),
-      startDate: <Date>new Date(this.date),
-      duration: <number>this.duration,
+      startDate: <Date>new Date(value.date),
+      duration: <number>value.duration,
       isTopRated: false
     });
     this.breadcrumbService.goBack();

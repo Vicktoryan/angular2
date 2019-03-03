@@ -8,4 +8,5 @@ export interface CourseItem {
   durationHour?: string;
   durationMinutes?: string;
   isTopRated?: boolean;
+  authors?: { id: number, lastName: string }[];
 }

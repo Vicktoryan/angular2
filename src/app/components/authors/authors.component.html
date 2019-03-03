@@ -1,0 +1,14 @@
+<div class="panel">
+  <div class="dropDownControl" (click)="dropDownOpen = !dropDownOpen">v</div>
+  <ul class="dropDown" *ngIf="dropDownOpen === true">
+    <li *ngFor="let author of items" (click)="selectItem(author); dropDownOpen = false">
+      {{author.name}}
+    </li>
+  </ul>
+  <div class="selectedItems">
+    <div *ngFor="let author of selectedItems" class="content">
+      {{author.name}}
+      <div class="button" (click)="removeItem(author)">X</div>
+    </div>
+  </div>
+</div>

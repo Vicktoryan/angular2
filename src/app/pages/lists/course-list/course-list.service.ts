@@ -76,9 +76,8 @@ export class CourseListService {
   }
 
   public setItem(item: CourseItem): void {
-    console.log(item);
-    if (item.id && item.id !== 'new') {
-      const itm: CourseItem = this.items.find((item: CourseItem) => item.id === item.id);
+    if (item.id && item.id !== 'new' && this.items.length > 0) {
+      const itm: CourseItem = this.items.find((its: CourseItem) => +its.id === +item.id);
       Object.assign(itm, item);
     } else {
       console.log('!!!');

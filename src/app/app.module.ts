@@ -20,6 +20,7 @@ import { ItemStateDirective } from './directives/item-state.directive';
 import { OrderModule } from 'ngx-order-pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './loader/loader.component';
+import { AuthorsComponent } from './components/authors/authors.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LoaderComponent } from './loader/loader.component';
     FilterListComponent,
     DurationPipe,
     ItemStateDirective,
-    LoaderComponent
+    LoaderComponent,
+    AuthorsComponent
   ],
   imports: [
     BrowserModule,
