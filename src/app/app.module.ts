@@ -21,6 +21,10 @@ import { OrderModule } from 'ngx-order-pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './loader/loader.component';
 import { AuthorsComponent } from './components/authors/authors.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,9 @@ import { AuthorsComponent } from './components/authors/authors.component';
     ReactiveFormsModule,
     OrderModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [
     AuthGuard

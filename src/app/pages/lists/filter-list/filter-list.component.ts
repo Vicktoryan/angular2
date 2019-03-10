@@ -18,7 +18,7 @@ export class FilterListComponent implements OnInit {
     const input = document.getElementById('textInput');
 
     const typeahead = fromEvent(input, 'keyup').pipe(
-      map((e: KeyboardEvent) => e.target.value),
+      map((e: any) => e.target.value),
       debounceTime(500)
     );
 

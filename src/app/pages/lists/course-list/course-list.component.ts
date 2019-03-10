@@ -1,3 +1,5 @@
+///<reference path="../../../reducers/index.ts"/>
+import { Store, select } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { CourseListService } from './course-list.service';
 import { CourseItem } from '../../../interfaces/CourseItem';
@@ -6,6 +8,8 @@ import { CommonService } from '../../../services/common.service';
 import { Router } from '@angular/router';
 import { BreadcrumbService } from '../../../services/breadcrumb.service';
 import { Subscription } from 'rxjs';
+
+import * as fromRoot from '../../../reducers'
 
 @Component({
   selector: 'app-course-list',
@@ -18,24 +22,26 @@ export class CourseListComponent implements OnInit {
   private subscription: Subscription;
 
   private searchText: string;
+
   constructor(
     private router: Router,
     private courseListService: CourseListService,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private store: Store<fromRoot.State>
   ) {
   }
 
   public ngOnInit() {
     this.userInfo = CommonService.getUserInformation();
 
-    this.subscription = this.courseListService.getItemsObserve().subscribe((items: CourseItem[]) => {
-      this.items = items;
+    this.store.pipe(select((state: any) => state.courseList.itemList)).subscribe((courseList: CourseItem[] = []) => {
+      this.items = courseList; //Object.assign({}, courseList.itemList) || [];
     });
     this.courseListService.notifyGetItems();
   }
 
   public onRemove(): void {
-
+    console.log(this.items);
   }
 
   public onSearch(search: string): void {
@@ -45,7 +51,7 @@ export class CourseListComponent implements OnInit {
 
   public onAdd(): void {
     this.breadcrumbService.setItem('New course', ``);
-    this.router.navigate(['/course/new']);
+    this.router.navigate([ '/course/new' ]);
   }
 
   public onLoadMore(): void {

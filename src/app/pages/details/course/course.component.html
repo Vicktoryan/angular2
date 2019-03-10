@@ -1,28 +1,28 @@
 <div style="display: flex; flex-direction: column; padding: 20px;">
   <form [formGroup]="registerForm" (ngSubmit)="onSave()">
     <div class="element">
-      <label for="title">Title</label>
+      <label for="title">Title *</label>
       <input formControlName="title" id="title" type="text" >
       <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
         <div *ngIf="f.title.errors.required">Title is required</div>
       </div>
     </div>
     <div class="element">
-      <label for="description">Description</label>
+      <label for="description">Description *</label>
       <textarea id="description" type="text" formControlName="description"></textarea>
       <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
         <div *ngIf="f.description.errors.required">Description is required</div>
       </div>
     </div>
     <div class="element">
-      <label for="date">Date</label>
+      <label for="date">Date *</label>
       <input id="date" type="text" formControlName="date">
       <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
         <div *ngIf="f.date.errors.required">Date is required</div>
       </div>
     </div>
     <div class="element">
-      <label for="duration">Duration</label>
+      <label for="duration">Duration *</label>
       <div style="display: flex; flex-direction: row">
         <input id="duration" type="text" formControlName="duration">
         <div>{{duration | duration}}</div>
@@ -32,14 +32,14 @@
       </div>
     </div>
     <div>
-      <label for="authors">Authors</label>
-      <app-authors [authors]="authors"></app-authors>
+      <label for="authors">Authors *</label>
+      <app-authors [authors]="authors" (changeAuthors)="setAuthors($event)"></app-authors>
     </div>
     <div style="display: flex; flex-direction:row; width: 200px; justify-content: space-between;">
       <button (click)="onCancel()">
         Cancel
       </button>
-      <button>
+      <button [ngClass]="{'green': validationForm, 'transparent': !validationForm}">
         Save
       </button>
     </div>

@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { CommonEnums } from '../../../enums/CommonEnums';
 import { Observable, Subject } from 'rxjs';
 import { LoaderService } from '../../../services/loader.service';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../../reducers'
+import * as actions from '../../../actions/course-list.actions'
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +17,8 @@ export class CourseListService {
 
   constructor(
     private http: HttpClient,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private store: Store<fromRoot.State>
   ) {
   }
 
@@ -30,17 +34,23 @@ export class CourseListService {
       this.loaderService.startLoader();
       const start: number = isMore ? this.items.length : 0;
       this.http.get(`${CommonEnums.apiUrl}courses?start=${start}&count=5${textFragment}`).subscribe((items: any[]) => {
+
+        //this.store.dispatch(new actions.LoadCourseLists());
+
+
         items.forEach((item) => {
           item.duration = item.length;
           item.createDate = item.date;
         });
         if (isMore) {
-          this.items.push(...items);
+          //this.items.push(...items);
+          this.store.dispatch({type: actions.CourseListActionTypes.AddCourseLists, itemList: items});
         } else {
-          this.items = items;
+          //this.items = items;
+          this.store.dispatch({type: actions.CourseListActionTypes.LoadCourseLists, itemList: items});
         }
         this.loaderService.endLoader();
-        this.subject.next(this.items);
+        //this.subject.next(this.items);
       });
   }
 
