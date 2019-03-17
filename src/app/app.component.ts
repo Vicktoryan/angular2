@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,8 @@ import { HeaderComponent } from './components/header/header.component';
 export class AppComponent {
   public title = 'Project';
 
-  constructor() {
-
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('en');
   }
 
   public ngOnInit(): void {

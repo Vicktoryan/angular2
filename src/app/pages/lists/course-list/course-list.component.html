@@ -4,7 +4,7 @@
     *ngIf="userInfo.userId !== undefined"
     class="green"
     (click)="onAdd()"
-  >Add course</button>
+  >{{'addCourse' | translate }}</button>
 </div>
 <div class="content">
   <div *ngFor="let item of items | orderBy: 'item.name': true">
