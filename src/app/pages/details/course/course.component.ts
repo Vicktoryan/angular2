@@ -12,6 +12,8 @@ import {
   ControlValueAccessor, ValidatorFn, ValidationErrors
 } from '@angular/forms';
 import { noop } from 'rxjs';
+import * as fromRoot from '../../../reducers'
+import { Store, select } from '@ngrx/store';
 
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -48,7 +50,8 @@ export class CourseComponent implements OnInit, ControlValueAccessor {
     private courseListService: CourseListService,
     private breadcrumbService: BreadcrumbService,
     private formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private store: Store<fromRoot.State>
   ) {
 
   }
@@ -62,25 +65,42 @@ export class CourseComponent implements OnInit, ControlValueAccessor {
       description: [ '' ],
       authors: [ '' ]
     });
+    this.courseListService.getItem();
+    this.store.pipe(select((state: any) => state.course.item)).subscribe((item: CourseItem) => {
+      this.registerForm = new FormGroup({
+        title: new FormControl(item.name, Validators.required),
+        date: new FormControl(this.datePipe.transform(new Date(item.createDate), 'MM.dd.yyyy'), Validators.required),
+        duration: new FormControl(item.duration, Validators.required),
+        description: new FormControl(item.description, Validators.required),
+        authors: new FormControl(item.authors, Validators.required)
+      }, { validators: identityRevealedValidator });
+      this.authors = item.authors;
+      console.log(this.registerForm);
+      setTimeout(() => {
+        this.cdr.detectChanges();
+      }, 100);
+    });
 
     this.sub = this.route.params.subscribe(params => {
       this.id = params[ 'id' ]; // (+) converts string 'id' to a number
-      if (this.id) {
-        setTimeout(() => {
-          this.cdr.detectChanges();
-        }, 100);
-        this.courseListService.getItem(this.id).then((item: CourseItem) => {
-          this.registerForm = new FormGroup({
-            title: new FormControl(item.name, Validators.required),
-            date: new FormControl(this.datePipe.transform(new Date(item.createDate), 'MM.dd.yyyy'), Validators.required),
-            duration: new FormControl(item.duration, Validators.required),
-            description: new FormControl(item.description, Validators.required),
-            authors: new FormControl(item.authors, Validators.required)
-          }, { validators: identityRevealedValidator });
-          this.authors = item.authors;
-        });
-      }
+      this.courseListService.getItem(this.id);
     });
+    //   if (this.id) {
+    //     setTimeout(() => {
+    //       this.cdr.detectChanges();
+    //     }, 100);
+    //     this.courseListService.getItem(this.id).then((item: CourseItem) => {
+    //       this.registerForm = new FormGroup({
+    //         title: new FormControl(item.name, Validators.required),
+    //         date: new FormControl(this.datePipe.transform(new Date(item.createDate), 'MM.dd.yyyy'), Validators.required),
+    //         duration: new FormControl(item.duration, Validators.required),
+    //         description: new FormControl(item.description, Validators.required),
+    //         authors: new FormControl(item.authors, Validators.required)
+    //       }, { validators: identityRevealedValidator });
+    //       this.authors = item.authors;
+    //     });
+    //   }
+    // });
   }
 
   get validationForm() {

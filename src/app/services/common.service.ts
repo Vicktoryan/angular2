@@ -7,7 +7,9 @@ import { CommonEnums } from '../enums/CommonEnums';
 import { HttpHeaders } from '@angular/common/http';
 import { Headers } from '@angular/http';
 import { LoaderService } from './loader.service';
-
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../reducers'
+import * as actions from '../actions/login.actions'
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +20,8 @@ export class CommonService {
     private headerService: HeaderService,
     private http: HttpClient,
     private router: Router,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private store: Store<fromRoot.State>
   ) {
 
   }
@@ -56,6 +59,9 @@ export class CommonService {
             };
 
             localStorage.setItem('currentUser', JSON.stringify(this.userInformation));
+            this.store.dispatch({ type: actions.LoginActionTypes.Login, userInformation: this.userInformation });
+
+
             resolve(true);
           });
 
